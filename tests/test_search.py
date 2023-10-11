@@ -1,12 +1,25 @@
+import allure
+from allure_commons.types import Severity
+
 from wikipedia_app_tests.pages.search_page import SearchPage
 
 
+@allure.tag('mobile')
+@allure.severity(Severity.CRITICAL)
+@allure.label('owner', 'Ilya Tarasov')
+@allure.feature('Search')
+@allure.title('Find article by exact title')
 def test_find_article():
     page = SearchPage()
     page.type_search_request('appium')
     page.should_have_first_search_result_title('Appium')
 
 
+@allure.tag('mobile')
+@allure.severity(Severity.CRITICAL)
+@allure.label('owner', 'Ilya Tarasov')
+@allure.feature('Search')
+@allure.title('Tap on the search result opens the correct article')
 def test_open_article():
     page = SearchPage()
     page.type_search_request('lk-99')

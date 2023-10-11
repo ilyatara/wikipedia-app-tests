@@ -1,15 +1,26 @@
 import allure
+from allure_commons.types import Severity
 
 from wikipedia_app_tests.pages.tutorial_page import TutorialPage
 from wikipedia_app_tests.utils.appium import by_id
 
 
+@allure.tag('mobile')
+@allure.severity(Severity.CRITICAL)
+@allure.label('owner', 'Ilya Tarasov')
+@allure.feature('Tutorial')
+@allure.title('After skipping the tutorial the main screen opens')
 def test_skip_tutorial():
     page = TutorialPage()
     page.skip()
     page.should_have_main_page_opened()
 
 
+@allure.tag('mobile')
+@allure.severity(Severity.NORMAL)
+@allure.label('owner', 'Ilya Tarasov')
+@allure.feature('Tutorial')
+@allure.title('All screens of the tutorial have expected contents')
 def test_tutorial_screens_contents():
     page = TutorialPage()
 
