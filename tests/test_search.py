@@ -20,7 +20,7 @@ def test_find_article():
 @allure.label('owner', 'Ilya Tarasov')
 @allure.feature('Search')
 @allure.title('Tap on the search result opens the correct article')
-def test_open_article():
+def test_open_article_from_search_results():
     page = SearchPage()
     page.type_search_request('lk-99')
     page.should_have_first_search_result_title(('LK-99'))
