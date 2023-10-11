@@ -1,0 +1,8 @@
+.idea/
+*.pyc
+reports/
+allure-results/
+.env.bstack
+.env.local_real
+.env.local_emulator
+.env.credentials
