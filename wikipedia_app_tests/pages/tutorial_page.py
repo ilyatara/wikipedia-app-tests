@@ -39,6 +39,5 @@ class TutorialPage:
             locator.should(have.text((text)))
 
     def should_have_main_page_opened(self):
-        with allure.step('Check that the main screen has opened'):
-            main_page = MainPage()
-            main_page.should_be_opened()
+        with allure.step('Check that the main screen is opened'):
+            MainPage().should_be_opened()

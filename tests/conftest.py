@@ -1,12 +1,8 @@
-import os
-
 import pytest
 import allure
 import allure_commons
-import requests
 from selene import browser, support
 from appium import webdriver
-from appium.options.android import UiAutomator2Options
 
 import project
 import utils

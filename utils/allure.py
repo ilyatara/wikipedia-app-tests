@@ -10,7 +10,6 @@ def attach_bstack_video(session_id):
         f'https://api.browserstack.com/app-automate/sessions/{session_id}.json',
         auth=(project.config.bstack_username, project.config.bstack_access_key),
     ).json()
-    # print(bstack_session)
     video_url = bstack_session['automation_session']['video_url']
 
     allure.attach(
