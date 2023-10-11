@@ -2,7 +2,9 @@
 *.pyc
 reports/
 allure-results/
+allure-report/
 .env.bstack
 .env.local_real
 .env.local_emulator
 .env.credentials
+notifications/telegram.json

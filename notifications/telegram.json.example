@@ -1,0 +1,17 @@
+{
+  "base": {
+    "project": "Wikipedia App Tests",
+    "environment": "${CONTEXT}",
+    "comment": "some comment",
+    "reportLink": "${BUILD_URL}",
+    "language": "en",
+    "messenger": "telegram",
+    "allureFolder": "allure-report/",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "*****",
+    "chat": "*****",
+    "replyTo": ""
+  }
+}
