@@ -1,23 +1,17 @@
 import allure
-from selene import browser, be, have
-from appium.webdriver.common.appiumby import AppiumBy
+from selene import be, have
 
 from wikipedia_app_tests.pages.main_page import MainPage
+from wikipedia_app_tests.utils.appium import by_id
 
 
 class TutorialPage:
-    skip_button = browser.element(
-        (AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_skip_button"))
-    continue_button = browser.element(
-        (AppiumBy.ID, 'org.wikipedia.alpha:id/fragment_onboarding_forward_button'))
-    accept_button = browser.element(
-        (AppiumBy.ID, 'org.wikipedia.alpha:id/acceptButton'))
-    image = browser.element(
-        (AppiumBy.ID, 'org.wikipedia.alpha:id/imageViewCentered'))
-    primary_text = browser.element(
-        (AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView'))
-    secondary_text = browser.element(
-        (AppiumBy.ID, 'org.wikipedia.alpha:id/secondaryTextView'))
+    skip_button = by_id('org.wikipedia.alpha:id/fragment_onboarding_skip_button')
+    continue_button = by_id('org.wikipedia.alpha:id/fragment_onboarding_forward_button')
+    accept_button = by_id('org.wikipedia.alpha:id/acceptButton')
+    image = by_id('org.wikipedia.alpha:id/imageViewCentered')
+    primary_text = by_id('org.wikipedia.alpha:id/primaryTextView')
+    secondary_text = by_id('org.wikipedia.alpha:id/secondaryTextView')
 
     def skip(self):
         with allure.step('Skip tutorial'):

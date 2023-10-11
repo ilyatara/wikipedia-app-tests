@@ -1,8 +1,7 @@
 import allure
-from selene import browser
-from appium.webdriver.common.appiumby import AppiumBy
 
 from wikipedia_app_tests.pages.tutorial_page import TutorialPage
+from wikipedia_app_tests.utils.appium import by_id
 
 
 def test_skip_tutorial():
@@ -21,11 +20,11 @@ def test_tutorial_screens_contents():
             'We’ve found the following on your device:'
         )
         page.should_have_element_with_text(
-            browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/option_label')),
+            by_id('org.wikipedia.alpha:id/option_label'),
             'English'
         )
         page.should_have_element_with_text(
-            browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/addLanguageButton')),
+            by_id('org.wikipedia.alpha:id/addLanguageButton'),
             'Add or edit languages'
         )
 
@@ -56,11 +55,11 @@ def test_tutorial_screens_contents():
             'Help make the app better'
         )
         page.should_have_element_with_text(
-            browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/rejectButton')),
+            by_id('org.wikipedia.alpha:id/rejectButton'),
             'Reject'
         )
         page.should_have_element_with_text(
-            browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/acceptButton')),
+            by_id('org.wikipedia.alpha:id/acceptButton'),
             'Accept'
         )
 
