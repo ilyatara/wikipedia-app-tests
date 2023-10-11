@@ -3,9 +3,21 @@ from selene import browser, be, have
 from appium.webdriver.common.appiumby import AppiumBy
 
 
-def test_welcome_screen():
+def test_skip_tutorial():
 
-    with allure.step('Check elements on the 1st welcome screen'):
+    with allure.step('Skip tutorial'):
+        browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_skip_button")).click()
+
+
+    with allure.step('Check that the main screen has opened'):
+
+        browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")
+        ).should(be.present)
+
+
+def test_tutorial_screens_contents():
+
+    with allure.step('Check elements on the 1st tutorial screen'):
 
         browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/imageViewCentered')
         ).should(be.present)
@@ -30,7 +42,7 @@ def test_welcome_screen():
         ).click()
 
 
-    with allure.step('Check elements on the 2nd welcome screen'):
+    with allure.step('Check elements on the 2nd tutorial screen'):
 
         browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/imageViewCentered')
         ).should(be.present)
@@ -49,7 +61,7 @@ def test_welcome_screen():
         ).click()
 
 
-    with allure.step('Check elements on the 3rd welcome screen'):
+    with allure.step('Check elements on the 3rd tutorial screen'):
 
         browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/imageViewCentered')
         ).should(be.present)
@@ -67,7 +79,7 @@ def test_welcome_screen():
         ).click()
 
 
-    with allure.step('Check elements on the 4th welcome screen'):
+    with allure.step('Check elements on the 4th tutorial screen'):
         browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/imageViewCentered')
         ).should(be.present)
 
