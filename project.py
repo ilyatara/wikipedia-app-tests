@@ -39,14 +39,24 @@ class Config(BaseSettings):
     def get_context():
         return os.getenv('context')
 
-    def upload_apk_to_bstack(self):
-        bstack_upload_url = 'https://api-cloud.browserstack.com/app-automate/upload'
-        files = {'file': (self.apk_name,
-                          open(utils.path.get_path(self.apk_name), 'rb'),
-                          'multipart/form-data')}
+    def get_bstack_app_url(self):
+        # https://www.browserstack.com/docs/app-automate/api-reference/appium/apps
+        # check if apk was uploaded earlier
+        recent_apps_url = 'https://api-cloud.browserstack.com/app-automate/recent_apps'
         auth = (self.bstack_username, self.bstack_access_key)
-        resp = requests.post(bstack_upload_url, auth=auth, files=files)
-        self.bstack_app_url = resp.json()['app_url']
+        resp = requests.get(recent_apps_url, auth=auth)
+        uploaded_earlier = [x for x in resp.json() if x.get('app_name') == self.apk_name]
+        if uploaded_earlier:
+            self.bstack_app_url = uploaded_earlier[0]['app_url']
+        else:
+            # upload new apk to bstack
+            upload_url = 'https://api-cloud.browserstack.com/app-automate/upload'
+            files = {'file': (self.apk_name,
+                              open(utils.path.get_path(self.apk_name), 'rb'),
+                              'multipart/form-data')}
+            resp = requests.post(upload_url, auth=auth, files=files)
+            self.bstack_app_url = resp.json()['app_url']
+        return self.bstack_app_url
 
     def to_driver_options(self):
         options = UiAutomator2Options()
@@ -59,7 +69,7 @@ class Config(BaseSettings):
         options.set_capability('locale', self.locale)
 
         if self.context == 'bstack':
-            options.set_capability('app', self.bstack_app_url)
+            options.set_capability('app', self.get_bstack_app_url())
             options.set_capability(
                 'bstack:options', {
                     'projectName': self.bstack_project_name,
@@ -76,6 +86,3 @@ class Config(BaseSettings):
 
 
 config = Config(_env_file=find_dotenv(f'.env.{Config.get_context()}'))
-
-if config.context == 'bstack' and config.bstack_app_url is None:
-    config.upload_apk_to_bstack()
