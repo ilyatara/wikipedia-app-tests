@@ -1,5 +1,4 @@
 import pytest
-import allure
 import allure_commons
 from selene import browser, support
 from appium import webdriver
@@ -11,11 +10,10 @@ import utils
 @pytest.fixture(scope='function', autouse=True)
 def mobile_management():
 
-    with allure.step('init app session'):
-        browser.config.driver = webdriver.Remote(
-            project.config.remote_url,
-            options=project.config.to_driver_options()
-        )
+    browser.config.driver = webdriver.Remote(
+        project.config.remote_url,
+        options=project.config.to_driver_options()
+    )
 
     browser.config.timeout = project.config.timeout
 
@@ -31,8 +29,7 @@ def mobile_management():
 
     session_id = browser.driver.session_id
 
-    with allure.step('tear down app session'):
-        browser.quit()
+    browser.quit()
 
     if project.config.context == 'bstack':
         utils.allure.attach_bstack_video(session_id)
