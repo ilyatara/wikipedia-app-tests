@@ -1,7 +1,7 @@
 {
   "base": {
     "project": "Wikipedia App Tests",
-    "environment": "${CONTEXT}",
+    "environment": "BrowserStack",
     "comment": "some comment",
     "reportLink": "${BUILD_URL}",
     "language": "en",
