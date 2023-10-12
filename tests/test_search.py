@@ -9,7 +9,7 @@ from wikipedia_app_tests.pages.search_page import SearchPage
 @allure.label('owner', 'Ilya Tarasov')
 @allure.feature('Search')
 @allure.title('Find article by exact title')
-def test_find_article():
+def test_find_article_by_exact_title():
     page = SearchPage()
     page.type_search_request('appium')
     page.should_have_first_search_result_title('Appium')
