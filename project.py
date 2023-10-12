@@ -13,7 +13,7 @@ import utils
 
 class Config(BaseSettings):
 
-    context: Literal['bstack', 'local_real', 'local_emulator']
+    context: Literal['bstack', 'local_real', 'local_emulator'] = 'local_real'
 
     remote_url: str
 
