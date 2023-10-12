@@ -2,7 +2,7 @@
   "base": {
     "project": "Wikipedia App Tests",
     "environment": "BrowserStack",
-    "comment": "some comment",
+    "comment": "device: ${DEVICE_NAME}, platform: Android ${PLATFORM_VERSION}",
     "reportLink": "${BUILD_URL}",
     "language": "en",
     "messenger": "telegram",
