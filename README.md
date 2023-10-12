@@ -8,7 +8,7 @@
   <code><img width="5%" title="Pycharm" src="images/logos/pycharm.png"></code>
   <code><img width="5%" title="Python" src="images/logos/python.png"></code>
   <code><img width="5%" title="Pytest" src="images/logos/pytest.png"></code>
-  <code><img width="5%" title="Requests" src="images/logos/pytest.png"></code>
+  <code><img width="5%" title="Requests" src="images/logos/requests.png"></code>
   <code><img width="5%" title="Appium" src="images/logos/appium.png"></code>
   <code><img width="5%" title="Selene" src="images/logos/selene.png"></code>
   <code><img width="5%" title="Selenium" src="images/logos/selenium.png"></code>
@@ -30,22 +30,22 @@
 
 Туториал:
 
-- Проверка содержимого на всех слайдах туториала
 - Пропуск туториала
+- Проверка содержимого на всех слайдах туториала
 
 
 
 ## Запуск тестов
 
-Тесты могут запускаться локально (на реальном устройстве и на эмуляторе) и удалённо - в облачной платформе для тестирования <a href="https://browserstack.com>BrowserStack</a>.
+Тесты могут запускаться локально (на реальном устройстве и на эмуляторе) и удалённо - в облачной платформе для тестирования <a href="https://browserstack.com">BrowserStack</a>.
 
-Способ запуска определяется переменной окружения "context". Варианты - "local_real", "local_emulator" и "bstack". Значение по умолчанию - "local_real". В зависимости от значения "context" для конфигурации проекта (в файле <code>project.py</code>) будет выбран файл ".env.{context}". Примеры заполнения конфигурационных файлов находятся в корневой директории проекта с расширением <code>.example</code>.
+Способ запуска определяется переменной окружения context. Допустимые варианты её значений - local_real, local_emulator и bstack. Значение по умолчанию - local_real. В зависимости от значения context для конфигурации проекта (в файле <code>project.py</code>) будет выбран файл <code>.env.{context}</code>. Примеры заполнения конфигурационных файлов находятся в корневой директории проекта с расширением <code>.example</code>.
 
 ### Локальный запуск на реальном устройстве
 
 Перед запуском необходимо:
 - заполнить файл <code>.env.local_real</code>
-- подключить по USB реальное устройство
+- подключить устройство по USB
 - запустить Appium Server
 - находясь в корневой директории проекта, выполнить в консоли команды:
 
@@ -93,13 +93,15 @@ pip install -r requirements.txt
 context=bstack pytest .
 ```
 
-При необходимости можно заменить .apk-файл в корне проекта на приложение Wikipedia другой версии. Файл из корня проекта будет автоматически загружен на BrowserStack или установлен на выбранный локальный девайс.
+При необходимости можно заменить .apk-файл в корне проекта на приложение Wikipedia другой версии. Файл из корня проекта будет автоматически загружен на BrowserStack. Если файл с таким именем был загружен ранее, повторно загружаться он не будет.
 
 ### Параметры запуска
 
 Параметры запуска, заданные в .env-файлах, можно переопределить с помощью соответствующей переменной окружения, например:
 
-context=bstack devicie='Galaxy S20' platform_version=10 pytest .
+```
+context=bstack device='Galaxy S20' platform_version=10.0 pytest .
+```
 
 При запуске через Jenkins параметры можно передать на странице "Собрать с параметрами":
 
