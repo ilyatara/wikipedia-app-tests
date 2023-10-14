@@ -33,6 +33,8 @@
 - Пропуск туториала
 - Проверка содержимого на всех слайдах туториала
 
+### <a href="https://jenkins.autotests.cloud/job/ilyatara-diploma_mobile/">Сборка Jenkins</a>
+
 
 
 ## Запуск тестов
