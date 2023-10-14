@@ -17,7 +17,7 @@ class SearchPage:
             self.search_input.type(value)
 
     def should_have_first_search_result_title(self, value):
-        with allure.step(f'Check that article with title {value} is first in search results'):
+        with allure.step(f'Check that article with title "{value}" is first in search results'):
             self.search_results.first.should(have.exact_text((value)))
 
     def open_search_result(self, index=0):
