@@ -4,7 +4,7 @@ from selene import browser, support
 from appium import webdriver
 
 import project
-import utils
+from wikipedia_app_tests.utils import allure
 
 
 @pytest.fixture(scope='function', autouse=True)
@@ -23,13 +23,13 @@ def mobile_management():
 
     yield
 
-    utils.allure.attach_screenshot(browser)
+    allure.attach_screenshot(browser)
 
-    utils.allure.attach_xml(browser)
+    allure.attach_xml(browser)
 
     session_id = browser.driver.session_id
 
     browser.quit()
 
     if project.config.context == 'bstack':
-        utils.allure.attach_bstack_video(session_id)
+        allure.attach_bstack_video(session_id)

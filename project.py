@@ -8,7 +8,7 @@ from typing import Optional
 from dotenv import find_dotenv
 from appium.options.android import UiAutomator2Options
 
-import utils
+from wikipedia_app_tests.utils.path import get_path
 
 
 class Config(BaseSettings):
@@ -52,7 +52,7 @@ class Config(BaseSettings):
             # upload new apk to bstack
             upload_url = 'https://api-cloud.browserstack.com/app-automate/upload'
             files = {'file': (self.apk_name,
-                              open(utils.path.get_path(self.apk_name), 'rb'),
+                              open(get_path(self.apk_name), 'rb'),
                               'multipart/form-data')}
             resp = requests.post(upload_url, auth=auth, files=files)
             self.bstack_app_url = resp.json()['app_url']
@@ -80,7 +80,7 @@ class Config(BaseSettings):
                 },
             )
         else:
-            options.set_capability('app', utils.path.get_path(self.apk_name))
+            options.set_capability('app', get_path(self.apk_name))
 
         return options
 
