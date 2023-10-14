@@ -127,7 +127,7 @@ allure serve allure-results
 
 <img src="images/screenshots/jenkins_configuration_allure.jpg" alt=""/>
 
-Просмотреть сформированный отчёт, можно нажав на любую из ссылок "Allure Report" на странице сборки:
+Просмотреть сформированный отчёт можно, нажав на любую из ссылок "Allure Report" на странице сборки:
 
 <img src="images/screenshots/jenkins_allure_report.jpg" alt=""/>
 
