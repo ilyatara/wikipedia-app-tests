@@ -7,7 +7,7 @@ from pydantic import Field
 from dotenv import find_dotenv
 from appium.options.android import UiAutomator2Options
 
-from wikipedia_app_tests.utils.path import get_path
+from wikipedia_app_tests.utils.path import get_abs_path
 
 
 class Config(BaseSettings):
@@ -51,7 +51,7 @@ class Config(BaseSettings):
         # upload new apk to bstack
         upload_url = 'https://api-cloud.browserstack.com/app-automate/upload'
         files = {'file': (self.apk_name,
-                          open(get_path(self.apk_name), 'rb'),
+                          open(get_abs_path(self.apk_name), 'rb'),
                           'multipart/form-data')}
         resp = requests.post(upload_url, auth=auth, files=files)
         self.bstack_app_url = resp.json()['app_url']
@@ -78,7 +78,7 @@ class Config(BaseSettings):
                 },
             )
         else:
-            options.set_capability('app', get_path(self.apk_name))
+            options.set_capability('app', get_abs_path(self.apk_name))
 
         return options
 
