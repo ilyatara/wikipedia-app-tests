@@ -11,8 +11,10 @@ from wikipedia_app_tests.utils.path import get_path
 
 
 class Config(BaseSettings):
+
     context: Literal['bstack', 'local_real', 'local_emulator'] = 'local_real'
     remote_url: str
+
     device_name: str
     platform_version: str
     apk_name: str

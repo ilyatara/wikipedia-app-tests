@@ -5,10 +5,14 @@ from wikipedia_app_tests.pages.tutorial_page import TutorialPage
 from wikipedia_app_tests.utils.appium import by_id
 
 
-@allure.tag('mobile')
+pytestmark = [
+    allure.tag('mobile'),
+    allure.label('owner', 'Ilya Tarasov'),
+    allure.feature('Tutorial')
+]
+
+
 @allure.severity(Severity.CRITICAL)
-@allure.label('owner', 'Ilya Tarasov')
-@allure.feature('Tutorial')
 @allure.title('After skipping the tutorial the main screen opens')
 def test_skip_tutorial():
     page = TutorialPage()
@@ -16,10 +20,7 @@ def test_skip_tutorial():
     page.should_have_main_page_opened()
 
 
-@allure.tag('mobile')
 @allure.severity(Severity.NORMAL)
-@allure.label('owner', 'Ilya Tarasov')
-@allure.feature('Tutorial')
 @allure.title('All screens of the tutorial have expected contents')
 def test_tutorial_screens_contents():
     page = TutorialPage()
