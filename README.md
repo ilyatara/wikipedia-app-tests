@@ -41,15 +41,15 @@
 
 Тесты могут запускаться локально (на реальном устройстве и на эмуляторе) и удалённо - в облачной платформе для тестирования <a href="https://browserstack.com">BrowserStack</a>.
 
-Способ запуска определяется переменной окружения **context**. Допустимые варианты её значений - **local_real**, **local_emulator** и **bstack**. Значение по умолчанию - **local_real**. В зависимости от значения context для конфигурации проекта (в файле <code>project.py</code>) будет выбран файл <code>.env.{context}</code>. Примеры заполнения конфигурационных файлов находятся в корневой директории проекта с расширением <code>.example</code>.
+Способ запуска определяется переменной окружения **context**. Допустимые варианты её значений - **local_real**, **local_emulator** и **bstack**. Значение по умолчанию - **local_real**. В зависимости от значения **context** для конфигурации проекта (в файле <code>project.py</code>) будет выбран файл <code>.env.{context}</code>. Образцы конфигурационных файлов с расширением <code>.example</code> находятся в корневой директории проекта.
 
 ### Локальный запуск на реальном устройстве
 
 Перед запуском необходимо:
-- заполнить файл <code>.env.local_real</code>
-- подключить устройство по USB
+- создать и заполнить файл <code>.env.local_real</code>
+- подключить мобильное устройство по USB
 - запустить Appium Server
-- находясь в корневой директории проекта, выполнить в консоли команды:
+- находясь в корневой директории проекта, выполнить в консоли команды (Linux, MacOS):
 
 ```
 python -m venv .venv
@@ -58,10 +58,19 @@ pip install -r requirements.txt
 context=local_real pytest .
 ```
 
+Аналогичные команды для Windows:
+
+```
+python -m venv .venv
+venv\Scripts\activate
+pip install -r requirements.txt
+$env:context='local_real'; pytest .
+```
+
 ### Локальный запуск на эмуляторе
 
 Перед запуском необходимо:
-- заполнить файл <code>.env.local_emulator</code>
+- создать и заполнить файл <code>.env.local_emulator</code>
 - запустить эмулятор через Android Studio AVD
 - запустить Appium Server
 - выполнить в консоли команды:
@@ -85,7 +94,7 @@ context=local_emulator pytest .
 
 <img src="images/screenshots/bstack_credentials.jpg" alt=""/>
 
-- заполнить файл <code>.env.bstack</code>
+- создать и заполнить файл <code>.env.bstack</code>
 - выполнить в консоли команды:
 
 ```
@@ -95,7 +104,7 @@ pip install -r requirements.txt
 context=bstack pytest .
 ```
 
-При необходимости можно заменить .apk-файл в корне проекта на приложение Wikipedia другой версии. Файл из корня проекта будет автоматически загружен на BrowserStack. Если файл с таким именем был загружен ранее, повторно загружаться он не будет.
+При необходимости можно заменить .apk-файл в корне проекта на приложение Wikipedia другой версии. Файл из корня проекта будет автоматически загружен на BrowserStack. (Если файл с таким именем был загружен ранее, повторно загружаться он не будет.)
 
 ### Параметры запуска
 
@@ -103,6 +112,12 @@ context=bstack pytest .
 
 ```
 context=bstack device='Galaxy S20' platform_version=10.0 pytest .
+```
+
+Windows:
+
+```
+$env:context='bstack'; $env:device='Galaxy S20'; $env:platform_version='10.0'; pytest .
 ```
 
 При запуске через Jenkins параметры можно передать на странице "Собрать с параметрами":
@@ -117,7 +132,7 @@ context=bstack device='Galaxy S20' platform_version=10.0 pytest .
 
 ### Локальный запуск
 
-Для просмотра отчёта необходимо выполнить команду
+Для просмотра отчёта выполните команду
 
 ```
 allure serve allure-results
@@ -125,7 +140,7 @@ allure serve allure-results
 
 ### Запуск в Jenkins
 
-В разделе "Послесборочные операции" необходимо добавить шаг "Allure Report", указав директорию "allure-results":
+Для просмотра Allure-отчёта в Jenkins необходимо установить плагин Allure. В разделе "Послесборочные операции" добавьте шаг "Allure Report", указав директорию "allure-results":
 
 <img src="images/screenshots/jenkins_configuration_allure.jpg" alt=""/>
 
